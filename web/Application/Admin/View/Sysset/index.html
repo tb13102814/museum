@@ -1,0 +1,78 @@
+<include file="Common:header"/>
+<include file="Common:menu"/>
+<!-- Main Page -->
+<div class="main">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="pull-left">
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                <li><a href="#"><i class="fa fa-file-text"></i>系统管理</a></li>
+                <li class="active"><i class="fa fa-reddit"></i>导航管理</li>
+            </ol>
+        </div>
+        <div class="pull-right">
+            <h2>导航管理</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-16 col-md-16 col-sm-16 col-xs-12">
+            <div class="tabs tabs-info">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#main" data-toggle="tab"><i class="fa fa-home"></i> 主导航</a>
+                    </li>
+                    <li>
+                        <a href="#bottom" data-toggle="tab">底部导航</a>
+                    </li>
+                    <li>
+                        <a href="#edit" data-toggle="tab">Wap底部导航</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    {:W('Main/main')}
+                    {:W('Bottom/bottom')}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+</div>
+<script type="text/javascript">
+    function nav_edit(id){
+        $.ajax({
+            url:"editNav",
+            data:{id:id},
+            datatype:"json",
+            type:"get",
+            success:function(data){
+                $("#tit").val(data.title);
+                $("#sort").val(data.sort);
+                $("#nav_id").val(data.id);
+            },
+        });
+    }
+</script>
+<script type="text/javascript">
+    function del(id) {
+        $("#did").val(id);
+    }
+</script>
+<script type="text/javascript">
+    $('#confirm').click(function(){
+        var did=$('#did').val();
+        $.ajax({
+            url:"deleteNav",
+            data:{did:did},
+            datatype:"json",
+            type:"post",
+            success:function(data){
+                if(data.status==0){
+                    $("#tr_"+did).remove();
+                }
+            },
+        });
+    });
+</script>
+<!-- End Main Page -->
+<include file="Common:end"/>

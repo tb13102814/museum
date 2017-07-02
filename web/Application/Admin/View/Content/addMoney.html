@@ -1,0 +1,136 @@
+<include file="Common:header"/>
+<include file="Common:menu"/>
+<!-- Main Page -->
+<div class="main ">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="pull-left">
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                <li><a href="#"><i class="fa fa-list-alt"></i>Forms</a></li>
+                <li class="active"><i class="fa  fa-check-circle-o"></i>Validation</li>
+            </ol>
+        </div>
+        <div class="pull-right">
+            <h2>Validation</h2>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+            <form id="form" action="__SELF__" class="form-horizontal" method="post" enctype="multipart/form-data">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6><i class="fa  fa-check-circle-o bk-fg-warning"></i>添加交易对象</h6>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">商品分类 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <select id="company" class="form-control" name="pid" required>
+                                    <option value="">请选择：</option>
+                                    <foreach name="select" item="v">
+                                        <option value="{$v.id}">{$v.html}{$v.title}</option>
+                                    </foreach>
+                                </select>
+                                <label class="error" for="company"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">文物标题 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="title" class="form-control" placeholder="文物标题" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">文物拍卖价 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="price" class="form-control" placeholder="单位：元" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">文物描述 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <textarea name="info" rows="5" class="form-control" placeholder="文物描述" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="file-input">文物封面 <span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="file" id="file-input" name="icon">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">打开方式 <span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <div class="radio-custom radio-inline">
+                                    <input type="radio" id="inline-radio1" name="open_with" value="0">
+                                    <label for="inline-radio1"> 当前窗口</label>
+                                </div>
+                                <div class="radio-custom radio-inline">
+                                    <input type="radio" id="inline-radio2" name="open_with" value="1">
+                                    <label for="inline-radio2"> 新窗口打开</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">文物排序 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="sort" class="form-control" placeholder="用于显示的顺序" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">文物详情 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <!--<div class="summernote" data-plugin-summernote data-plugin-options='{ "height": 230}'></div>-->
+                                <div><textarea name="introduce" class="summernote" id="summernote" title="Contents"></textarea></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button class="bk-margin-5 btn btn-info" id="submit">Submit</button>
+                                <button type="reset" class="bk-margin-5 btn btn-default">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#summernote').summernote({
+            lang : "zh-CN",
+            height: "300px",
+            focus: true,
+            placeholder: '艺术品描述...',
+            callbacks: {
+                onImageUpload: function (files) {
+                    var formData = new FormData();
+                    formData.append("file",files[0]);
+                    $.ajax({
+                        url : "addArt",
+                        data : formData,
+                        type : 'POST',
+                        dataType: 'JSON',
+                        cache: false,
+                        processData : false,
+                        contentType : false,
+                        success : function(data) {
+                            $('#summernote').summernote('insertImage', data, function ($image) {
+                                $image.attr('src', data);
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    });
+</script>
+<!-- End Main Page -->
+<include file="Common:end"/>

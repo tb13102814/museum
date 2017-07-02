@@ -1,0 +1,114 @@
+<include file="Common:header"/>
+<div class="blog">
+    <div class="container">
+        <div class="blog-top">
+            <div class="col-md-9 blog-left">
+                <div class="blog-main">
+                    <a class="bg">{$result.title}</a>
+                    <p>Post by <a href="#">{$result.author}</a> 20{$result.create_time|date='y-m-d',###}  <a href="#">5 comments</a></p>
+                </div>
+                <div class="blog-main-one">
+                    <div class="blog-one blog-sng">
+                        <img src="__UPLOAD__/{$result.icon}" alt="" />
+                        <p class="sngl">{$result.introduce}</p>
+                    </div>
+                    <div class="comments cmt">
+                        <ul>
+                            <li><span class="bookmark"> </span><a href="#">Uncategorized</a></li>
+                            <li><span class="clndr"> </span><p>march 13,2014</p></li>
+                            <li><span class="cmnt"> </span><a href="#">comments</a></li>
+                        </ul>
+                    </div>
+                </div>
+		<foreach name='comment' item='v'>
+                <div class="comment-list">
+                    <h5><a href="#">{$v.username}</a></h5>
+                    <div class="cmt-list">
+                        <div class="cmt-left">
+                            <img src="__UPLOAD__/{$v.img}" alt="" width="80px" height="80px"/>
+                        </div>
+                        <div class="cmt-right">
+                            <p>{$v.comment}</p>
+                        </div>
+                        <div class="clearfix"></div><br>
+			<p style="font-size: 1.4ch;"><span>{$v.cid}楼</span>&nbsp;<span>20{$v.replay_time|date='y-m-d H:i',###}</span>&nbsp;&nbsp;&nbsp;<em><a onclick="clickdown({$v.id})"><img src="__PUBLIC__/images/like.png"/>&nbsp;(<span id="dianzan_{$v.id}">{$v.clicknum}</span>)</a>&nbsp;&nbsp;&nbsp;<a onclick="replay({$v.aid})"><img src="__PUBLIC__/images/add.png"/>&nbsp;回复</a>&nbsp;&nbsp;&nbsp;<a onclick="watch({$v.aid},{$v.cid})"><img src="__PUBLIC__/images/link.png"/>&nbsp;查看回复(200)</a></em></p>
+                    </div>
+                </div>
+		</foreach>
+                <div class="content">
+                    <h3>发表评论</h3>
+                    <div class="contact-form">
+                        <form>
+                            <textarea placeholder="我也来评价几句..." name="comment" id="comment"></textarea>
+			    <input type="hidden" value="{$result.id}" name="aid" id="aid"/>
+			    <input type="hidden" value="0" name="pid" id="pid"/>
+			    <div class="build-btn" id="submit">
+			           <a class="hvr-shutter-out-horizontal">发表</a>
+			    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                {:W('Right/right')}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function watch(aid,cid){
+	         layer.open({
+	                   type: 2,
+		           area: ['800px', '630px'],
+		           fixed: false, //不固定
+		           maxmin: true,
+			   title: '查看全部回复',
+		          content: '{:U("Appreciate/watch")}?aid='+aid+'&cid='+cid,							     });
+    }
+    function replay(id){
+	          layer.open({
+		           type: 2,
+			   area: ['550px', '350px'],
+			   fixed: false, //不固定
+		           maxmin: true,
+		           title: '回复',
+		          content: '{:U("Appreciate/replay")}?aid='+id
+		   });
+   }
+   function clickdown(id){
+        $.ajax({
+            url:"{:U('Appreciate/clicknum')}",
+            data:{id:id},
+            dtattype:"json",
+            type:"post",
+            success:function(data){
+                if(data.status==1){
+                    $("#dianzan_"+id).text(data.clicknum);
+                }
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    $('document').ready(function(){
+	  $("#submit").click(function(){
+	  var aid=$('#aid').val();
+	  var comment=$('#comment').val();
+          if(comment==''){
+              layer.msg('评论内容不能为空...');
+              return false;								
+		   }
+		   $.ajax({
+			  url:"{:U('Appreciate/replay')}",
+			  data:{aid:aid,comment:comment},
+			  datatype:"json",
+			  type:"post",
+			  success:function(data){																		if(data==1){
+		          layer.msg('评论发表成功!');	
+			  window.location.reload();
+		      }else{
+				  layer.msg('评论发表失败...');
+			  }																								},																							 });
+		  });
+ });
+</script>
+<include file="Common:footer"/>

@@ -1,0 +1,71 @@
+<include file="Common:header"/>
+<!--buildings-->
+<div class="buildings">
+    <div class="container">
+        <div class="buildings-top">
+            <div class="building-one">
+                <foreach name="goods" item="v">
+                    <div class="col-md-3 building-left">
+                        <a  onclick="show({$v.id})"><img src="__UPLOAD__/{$v.icon}" alt="" /></a>
+                        <a onclick="show({$v.id})"><h4>{$v.title}</h4></a>
+                        <!--<p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>-->
+                        <div class="build-btn">
+                            <a onclick="show({$v.id})" class="hvr-shutter-out-horizontal">Read more</a>
+                        </div>
+                    </div>
+                    <!--<div class="clearfix"></div>-->
+                </foreach>
+            </div>
+            <!--     <div class="building-one">
+                     <div class="col-md-3 building-left">
+                         <a href="single.html"><img src="__PUBLIC__/images/b-4.jpg" alt="" /></a>
+                         <a href="single.html"><h4>Aliquam ac mattis</h4></a>
+                         <p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+                         <div class="build-btn">
+                             <a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+                         </div>
+                     </div>
+                     <div class="col-md-3 building-left">
+                         <a href="single.html"><img src="__PUBLIC__/images/b-5.jpg" alt="" /></a>
+                         <a href="single.html"><h4>Aliquam ac mattis</h4></a>
+                         <p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+                         <div class="build-btn">
+                             <a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+                         </div>
+                     </div>
+                     <div class="col-md-3 building-left">
+                         <a href="single.html"><img src="__PUBLIC__/images/b-6.jpg" alt="" /></a>
+                         <a href="single.html"><h4>Aliquam ac mattis</h4></a>
+                         <p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+                         <div class="build-btn">
+                             <a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+                         </div>
+                     </div>
+                     <div class="col-md-3 building-left">
+                         <a href="single.html"><img src="__PUBLIC__/images/b-7.jpg" alt="" /></a>
+                         <a href="single.html"><h4>Aliquam ac mattis</h4></a>
+                         <p>Integer hendrerit tortor nec enim finibus consequat. Aliquam eu quam quam. Aliquam posuere neque</p>
+                         <div class="build-btn">
+                             <a href="single.html" class="hvr-shutter-out-horizontal">Read more</a>
+                         </div>
+                     </div>
+                     <div class="clearfix"></div>
+                 </div>-->
+        </div>
+    </div>
+</div>
+<!--buildings-->
+<script type="text/javascript">
+    function show(id){
+        layer.open({
+            type: 2,
+            area: ['800px', '630px'],
+            fixed: false, //不固定
+            maxmin: true,
+            title: '艺术品详情',
+            content: '{:U("Trading/show")}?id='+id
+        });
+    }
+</script>
+<!--read-->
+<include file="Common:footer"/>

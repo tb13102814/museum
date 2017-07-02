@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>万维虚拟博物馆</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Architect Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="__PUBLIC__/css/style.css" rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>
+    <script src="__PUBLIC__/js/jquery-1.11.0.min.js"></script>
+    <!---- start-smoth-scrolling---->
+    <script type="text/javascript" src="__PUBLIC__/js/move-top.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/easing.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!--start-smoth-scrolling-->
+    <script type="text/css">
+        .top-nav{filter: alpha(opacity=50);opacity: 0.5;}
+    </script>
+</head>
+<body>
+<!--header-->
+<div class="header-top" id="home">
+    <div class="container">
+        <div class="header-logo">
+            <a href="index.html"><img src="__PUBLIC__/images/logo.png" alt=""/></a>
+        </div>
+        <div class="top-nav">
+            <span class="menu"><img src="__PUBLIC__/images/menu-icon.png" alt=""/></span>
+            <ul class="nav1">
+                <li><a href="http://museum.kjava.com.cn">首页</a></li>
+                <li><a href="{:U('Museum/index',array('nid'=>13))}">展馆概述</a></li>
+                <li><a href="{:U('Display/index',array('nid'=>12))}">陈列展览</a>
+                    <ul class="nav2">
+                        <li><a href="{:U('Display/index',array('nid'=>9))}">社会历史类</a></li>
+                        <li><a href="{:U('Display/index',array('nid'=>10))}">自然历史类</a></li>
+                        <li><a href="{:U('Display/index',array('nid'=>11))}">科学技术类</a></li>
+                        <li><a href="{:U('Display/index',array('nid'=>12))}">文化艺术类</a></li>
+                    </ul>
+                </li>
+                <li><a href="{:U('Appreciate/index')}">艺术鉴赏</a></li>
+                <li><a href="{:U('Trading/index')}">艺术品商店</a></li>
+                <li><a href="{:U('Museum/index',array('nid'=>7))}">联系我们</a></li>
+            </ul>
+            <!-- script-for-menu -->
+            <script>
+                $( "span.menu" ).click(function() {
+                    $( "ul.nav1" ).slideToggle( 300, function() {
+                        // Animation complete.
+                    });
+                });
+            </script>
+            <!-- /script-for-menu -->
+        </div>
+	<if condition="session('tel') eq null">
+        <div class="social-icons">
+            <ul class="nav1">
+                <li><a href="{:U('User/login')}">登陆 |</a></li>
+                <li><a href="{:U('User/register')}">注册</a></li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+	<else/>
+	<div class="social-icons">
+	     <ul class="nav1">
+                <li><a href="{:U('User/confirm')}">个人中心 |</a></li>
+	        <li><a href="{:U('User/logout')}">退出</a></li>
+             </ul>
+        </div>
+        <div class="clearfix"> </div>										    </if>
+    </div>
+    <div class="search-box">
+        <div id="sb-search" class="sb-search">
+            <form>
+                <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
+                <input class="sb-search-submit" type="submit" value="">
+                <span class="sb-icon-search"> </span>
+            </form>
+        </div>
+    </div>
+    <div class="header-info-right">
+        <div class="header cbp-spmenu-push">
+            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+                <a href="http://museum.kjava.com.cn">首页</a>
+                <a href="{:U('Display/index',array('nid'=>12))}">展馆概述</a>
+                <a href="{:U('Display/index',array('nid'=>12))}">陈列展览</a>
+                <a href="{:U('Appreciate/index')}">艺术鉴赏</a>
+                <a href="{:U('Trading/index')}">艺术品交易</a>
+                <a href="{:U('Museum/index',array('nid'=>7))}">联系我们</a>
+            </nav>
+            <!--script-nav -->
+            <script>
+                $("span.menu").click(function(){
+                    $("ul.navigatoin").slideToggle("300" , function(){
+                    });
+                });
+            </script>
+            <script type="text/javascript">
+                jQuery(document).ready(function($) {
+                    $(".scroll").click(function(event){
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                    });
+                });
+            </script>
+            <div class="clearfix"> </div>
+            <!-- /script-nav -->
+            <div class="main">
+                <section class="buttonset">
+                    <button id="showLeftPush"><img src="__PUBLIC__/images/menu.png" /><span>Menu</span></button>
+                </section>
+            </div>
+            <!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+            <script src="__PUBLIC__/js/classie.js"></script>
+            <script>
+                var	menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+                        showLeftPush = document.getElementById( 'showLeftPush' ),
+                        body = document.body;
+
+                showLeftPush.onclick = function() {
+                    classie.toggle( this, 'active' );
+                    classie.toggle( body, 'cbp-spmenu-push-toright' );
+                    classie.toggle( menuLeft, 'cbp-spmenu-open' );
+                    disableOther( 'showLeftPush' );
+                };
+            </script>
+        </div>
+    </div>
+</div>
+<!--//header-->
+<!--search-scripts-->
+<script src="__PUBLIC__/js/classie.js"></script>
+<script src="__PUBLIC__/js/uisearch.js"></script>
+<script>
+    new UISearch( document.getElementById( 'sb-search' ) );
+</script>
+<!--//search-scripts-->

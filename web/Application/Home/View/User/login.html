@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>万维虚拟博物馆</title>
+    <meta name="keywords" content="登陆">
+    <meta name="content" content="登陆">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/login.css">
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer.js"></script>
+</head>
+<body class="login_bj" >
+<div class="zhuce_body">
+    <div class="logo"><a href="#"><img src="__PUBLIC__/images/login/logo.png" width="114" height="54" border="0"></a></div>
+    <div class="zhuce_kong login_kuang">
+        <div class="zc">
+            <div class="bj_bai">
+                <h3>万维博物馆登录</h3>
+                <form  name="form1">
+                    <input name="phone" type="text" class="kuang_txt" placeholder="手机号" id="phone">
+                    <input name="pwd" type="text" class="kuang_txt" placeholder="密码" id="pwd">
+                    <input name="verify" type="text" class="kuang_txt yanzm" placeholder="验证码" id="verify">
+                    <img src="{:U('User/verify')}" id="code" onclick="this.src=this.src+'?'+Math.random()"/>
+                    <div>
+                        <a href="#">忘记密码？</a><input name="" type="checkbox" value="" checked><span>记住我</span>
+                    </div>
+                    <div class="btn_zhuce">登陆</div>
+                </form>
+            </div>
+            <div class="bj_right">
+                <p>使用以下账号直接登录</p>
+                <a href="#" class="zhuce_qq">QQ注册</a>
+                <a href="#" class="zhuce_wb">微博注册</a>
+                <a href="#" class="zhuce_wx">微信注册</a>
+                <p>已有账号？<a href="#">立即登录</a></p>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".btn_zhuce").on('click',function(){
+            var $phone=$("#phone").val();
+            var $pwd=$("#pwd").val();
+            var $verify=$("#verify").val();
+            if($phone==""){
+                layer.tips('手机号不能为空',"#phone",{
+                    tips:[2, '#ff9900'],
+                });
+                return false;
+            }
+            if($pwd==""){
+                layer.tips('密码不能为空',"#pwd",{
+                    tips:[2, '#ff9900'],
+                });
+                return false;
+            }
+            if($verify==""){
+                layer.tips('验证码为空','#verify',{
+                    tips:[2, '#ff9900'],
+                });
+                return false;
+            }
+            /*$.post("U('User/login')",{phone:$phone,pwd:$pwd,verify:$verify}, function(data) {
+                if(data == 0) {
+                    layer.msg('验证码错误,请重试...');
+                }else if(data==1){
+                    layer.msg('用户名不存在，请重试...');
+                }},json);*/
+            //return true;
+            $.ajax({
+                url:"{:U('User/login')}",
+                data:{phone:$phone,pwd:$pwd,verify:$verify},
+                datatype:"json",
+                type:"post",
+                success:function(data){
+                    if(data==0){
+                        layer.msg('验证码错误,请重试...');
+                    }else if(data==1){
+                        layer.msg('用户名不存在，请重试...');
+                    }else{
+                        layer.msg('登陆成功',function(){
+                            window.location.href="{:U('Index/index')}";
+                        });
+                    }
+                },
+            });
+        });
+    });
+</script>
+</body>
+</html>

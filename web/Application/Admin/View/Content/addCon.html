@@ -1,0 +1,52 @@
+<include file="Common:header"/>
+<include file="Common:menu"/>
+<!-- Main Page -->
+<div class="main ">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="pull-left">
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                <li><a href="#"><i class="icon fa fa-list-alt"></i>Forms</a></li>
+                <li class="active"><i class="fa fa-pencil-square-o"></i>Editors</li>
+            </ol>
+        </div>
+        <div class="pull-right">
+            <h2>Editors</h2>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading bk-bg-white">
+                    <h6><i class="fa fa-edit red"></i>Summernote Editors</h6>
+                    <div class="panel-actions">
+                        <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body bk-bg-white bk-padding-top-30 bk-padding-bottom-20">
+                    <form class="form-horizontal form-bordered">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="summernote" data-plugin-summernote data-plugin-options='{ "height": 230}'>Start typing...</div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="checkbox-custom checkbox-default bk-margin-top-10">
+                                    <input id="RememberMe" name="rememberme" type="checkbox">
+                                    <label for="RememberMe">Share</label>
+                                </div>
+                                <hr />
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- End Main Page -->
+<include file="Common:end"/>

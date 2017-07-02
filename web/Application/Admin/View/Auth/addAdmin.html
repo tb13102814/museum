@@ -1,0 +1,73 @@
+<include file="Common:header"/>
+<include file="Common:menu"/>
+<!-- Main Page -->
+<div class="main ">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="pull-left">
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                <li><a href="#"><i class="fa fa-list-alt"></i>Forms</a></li>
+                <li class="active"><i class="fa  fa-check-circle-o"></i>Validation</li>
+            </ol>
+        </div>
+        <div class="pull-right">
+            <h2>Validation</h2>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="row">
+        <div class="col-lg-11 col-md-6 col-sm-6 col-xs-12">
+            <form id="form" action="{:U('Auth/addAdmin')}" class="form-horizontal" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6><i class="fa  fa-check-circle-o bk-fg-warning"></i>添加管理员</h6>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户名 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="fullname" class="form-control" title="Plase enter a name." placeholder="eg.: John Smith Doe" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">密码 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="password" name="password" title="Please enter a password." class="form-control" placeholder="eg.: 123456789" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="file-input">头像 <span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="file" id="file-input" name="file-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">所属用户组 <span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <foreach name="group" item="v">
+                                <div class="checkbox-custom checkbox-inline">
+                                    <input type="checkbox" id="inline-checkbox1" name="role_id[]" value="{$v.id}">
+                                    <label for="inline-checkbox1">{$v.title}</label>
+                                </div>
+                                </foreach>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button class="bk-margin-5 btn btn-info">Submit</button>
+                                <button type="reset" class="bk-margin-5 btn btn-default">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Main Page -->
+<include file="Common:end"/>

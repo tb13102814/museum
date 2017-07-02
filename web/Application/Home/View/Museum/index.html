@@ -1,0 +1,28 @@
+<include file="Common:header"/>
+<!--blog-->
+<div class="blog">
+    <div class="container">
+        <div class="blog-top">
+            <div class="col-md-9 blog-left">
+                <div class="blog-main">
+                    <a class="bg">{$museum.title}</a>
+                    <p>Post by <a href="#">Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;20{$museum.create_time|date='y-m-d',###}&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">5 comments</a></p>
+                </div>
+                <div class="blog-main-one">
+                    <div class="blog-one blog-sng">
+                        <p class="sngl">{$museum.introduce}</p></div>
+                    <div class="comments cmt">
+                        <ul>
+                            <li><span class="bookmark"> </span><a href="#">Uncategorized</a></li>
+                            <li><span class="clndr"> </span><p>march 13,2014</p></li>
+                            <li><span class="cmnt"> </span><a href="#">comments</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {:W('Right/right')}
+        </div>
+    </div>
+</div>
+<!--blog-->
+<include file="Common:footer"/>

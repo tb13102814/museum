@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/css">
+        .content {
+            display: block;
+            width: 100%;
+            padding: 50px 0 80px 0;
+        }
+        .divContent a{
+            color: #f25252;
+            text-decoration:none;
+        }
+        .divContent a:hover {
+            color: red;
+            text-decoration: none;
+        }
+    </script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".big").click(function(){
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    area: '516px',
+                    skin: 'layui-layer-nobg', //没有背景色
+                    shadeClose: true,
+                    content: $('.big')
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="content">
+    <h1 id="htitle">
+        {$result.title}
+    </h1>
+    <div class="contip">
+        时间：<span id="create_time">20{$result.create_time|date='y-m-d',###}</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览次数：<span id="click_num">{$result.click_num} 次</span>
+    </div>
+    <div id="divContent" class="divContent">
+        <div style="text-align:center;" class="big"><img src="__UPLOAD__/{$result.icon}" alt="" style="line-height:1.5;"></div>
+        <p style="text-align:center;"> 清（1644-1911） </p>
+        <p style="text-align:center;"> 口径12.1cm,底径9.2cm,高11.5cm </p>
+        <p>{$result.introduce}</p>
+        <p align="center"><a href=""><i>收藏 (0) </i></a></p>
+    </div>
+</div>
+
+</body>
+</html>

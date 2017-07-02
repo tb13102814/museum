@@ -1,0 +1,91 @@
+<include file="Common:header"/>
+<include file="Common:menu"/>
+<!-- Main Page -->
+<div class="main ">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="pull-left">
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                <li><a href="#"><i class="fa fa-list-alt"></i>Forms</a></li>
+                <li class="active"><i class="fa  fa-check-circle-o"></i>Validation</li>
+            </ol>
+        </div>
+        <div class="pull-right">
+            <h2>Validation</h2>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="row">
+        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+            <form id="form" action="__SELF__" class="form-horizontal" method="post" enctype="multipart/form-data">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6><i class="fa  fa-check-circle-o bk-fg-warning"></i>添加艺术品</h6>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">首页分类 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <select id="pid" class="form-control" name="pid" required>
+                                    <option value="">请选择：</option>
+                                    <option value="100">首页滚动条</option>
+                                    <option value="100">首页热门条</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">首页艺术品标题 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="title" id="title" class="form-control" placeholder="艺术品标题" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="file-input">首页艺术品封面 <span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <input type="file" id="file-input" name="icon">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">打开方式 <span class="required">*</span></label>
+                            <div class="col-md-9">
+                                <div class="radio-custom radio-inline">
+                                    <input type="radio" id="open_with" name="open_with" value="0">
+                                    <label for="inline-radio1"> 当前窗口</label>
+                                </div>
+                                <div class="radio-custom radio-inline">
+                                    <input type="radio" id="open_with" name="open_with" value="1">
+                                    <label for="inline-radio2"> 新窗口打开</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">首页艺术品排序 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="sort" id="sort" class="form-control" placeholder="用于显示的顺序" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">首页艺术品详情 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <textarea name="introduce" rows="5" class="form-control" placeholder="首页内容描述" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button class="bk-margin-5 btn btn-info" id="submit">Submit</button>
+                                <button type="reset" class="bk-margin-5 btn btn-default">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Main Page -->
+<include file="Common:end"/>

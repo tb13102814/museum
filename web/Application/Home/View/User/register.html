@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>万维虚拟博物馆</title>
+    <meta name="keywords" content="注册">
+    <meta name="content" content="注册">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/login.css">
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //var handleUrl='{:U("User/login")}';
+            $(".btn_zhuce").on('click',function(){
+                var $username=$("#username").val();
+                var $phone=$("#phone").val();
+                var $email=$("#email").val();
+                var $pwd=$("#pwd").val();
+                var $repwd=$("#repwd").val();
+                if($username==""){
+                    layer.tips('昵称不能为空',"#username",{
+                        tips:[2, '#ff9900'],
+                    });
+                    return false;
+                }
+                if($phone==""){
+                    layer.tips('手机号不能为空',"#phone",{
+                        tips:[2, '#ff9900'],
+                    });
+                    return false;
+                }
+                if($email==""){
+                    layer.tips('邮箱号不能为空',"#email",{
+                        tips:[2, '#ff9900'],
+                    });
+                    return false;
+                }
+                if($pwd==""){
+                    layer.tips('密码不能为空',"#pwd",{
+                        tips:[2, '#ff9900'],
+                    });
+                    return false;
+                }
+                if($repwd==""){
+                    layer.tips('确认密码不能为空',"#repwd",{
+                        tips:[2, '#ff9900'],
+                    });
+                    return false;
+                }
+                if($repwd!=$pwd){
+                    layer.tips('两次的密码不一致',"#repwd",{
+                        tips:[2, '#ff9900'],
+                    });
+                    return false;
+                }
+                $.ajax({
+                    url:"{:U('User/register')}",
+                    data:{username:$username,phone:$phone,email:$email,pwd:$pwd},
+                    datatype:"json",
+                    type:"post",
+                    success:function(data){
+                        if(data==0){
+                            layer.msg('此手机号已被注册...',function(){
+                            });
+                        }else if(data==1){
+                            layer.msg('注册成功');
+                            window.location.href='login';
+                        }else{
+                            layer.msg('注册失败...');
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+</head>
+<body class="login_bj" >
+
+<div class="zhuce_body">
+    <div class="logo"><a href="#"><img src="__PUBLIC__/images/login/logo.png" width="114" height="54" border="0"></a></div>
+    <div class="zhuce_kong">
+        <div class="zc">
+            <div class="bj_bai">
+                <h3>欢迎注册</h3>
+                <form>
+                    <input name="username" type="text" class="kuang_txt phone" placeholder="昵称" id="username">
+                    <input name="phone" type="text" class="kuang_txt phone" placeholder="手机号" id="phone">
+                    <input name="email" type="text" class="kuang_txt email" placeholder="邮箱" id="email">
+                    <input name="pwd" type="text" class="kuang_txt possword" placeholder="密码" id="pwd">
+                    <input name="repwd" type="text" class="kuang_txt possword" placeholder="确认密码" id="repwd">
+                    <!--<div>
+                        <div class="hui_kuang"><img src="__PUBLIC__/images/login/zc_22.jpg" width="92" height="31"></div>
+                        <div class="shuaxin"><a href="#"><img src="__PUBLIC__/images/login/zc_25.jpg" width="13" height="14"></a></div>
+                    </div>-->
+                    <div>
+                        <input name="" type="checkbox" value=""><span>已阅读并同意<a href="#" target="_blank"><span class="lan">《万维博物馆使用协议》</span></a></span>
+                    </div>
+                    <div class="btn_zhuce">注册</div>
+
+                </form>
+            </div>
+            <div class="bj_right">
+                <p>使用以下账号直接登录</p>
+                <a href="#" class="zhuce_qq">QQ注册</a>
+                <a href="#" class="zhuce_wb">微博注册</a>
+                <a href="#" class="zhuce_wx">微信注册</a>
+                <p>已有账号？<a href="{:U('User/login')}">立即登录</a></p>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div style="text-align:center;">
+</div>
+
+</body>
+</html>

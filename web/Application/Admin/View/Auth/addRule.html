@@ -1,0 +1,167 @@
+<include file="Common:header"/>
+<include file="Common:menu"/>
+<!-- Main Page -->
+<div class="main ">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="pull-left">
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                <li><a href="#"><i class="fa fa-list-alt"></i>Forms</a></li>
+                <li class="active"><i class="fa  fa-check-circle-o"></i>Validation</li>
+            </ol>
+        </div>
+        <div class="pull-right">
+            <h2>Validation</h2>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading bk-bg-white">
+                    <h6><i class="fa fa-indent red"></i>添加规则</h6>
+                    <div class="panel-actions">
+                        <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" action="__SELF__" method="post">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">父级：</label>
+                            <div class="col-sm-2">
+                                <select id="company" class="form-control" name="pid" required>
+                                    <option value="0">- - - - - - - -顶级- - - - - - - -</option>
+                                    <foreach name="data" item="v">
+                                    <option value="{$v.id}">{$v.title}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                            <div class="col-lg-7 ">
+                                <div class="row">
+                                    <label class="col-lg-2 col-md-2 col-sm-12 control-label">名称：</label>
+                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+                                        <input type="text" class="form-control" name="title" required/>
+                                    </div>
+                                    <label class="col-lg-2 col-md-2 col-sm-12 control-label">控制器/方法：</label>
+                                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                                        <input type="text" class="form-control" required  name="name"/>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                                        <button class="btn btn-info">确定</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default bk-bg-white">
+                <div class="panel-heading bk-bg-white">
+                    <h6><i class="fa fa-table red"></i><span class="break"></span>规则菜单</h6>
+                    <div class="panel-actions">
+                        <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+                        <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>
+                                   ID
+                                </th>
+                                <th>规则名称</th>
+                                <th>控制器/方法</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <foreach name="result" item="k">
+                            <tr>
+                                <td>
+                                    {$k.id}
+                                </td>
+                                <td>{$k.html}{$k.title}</td>
+                                <td>{$k.name}</td>
+                                <td>{$k.create_time|date="y-m-d H:i",###}</td>
+                                <td>
+                                    <a class="popup-with-form btn btn-info" href="#demo-form" onclick="auth_edit({$k.id})">
+                                        <i class="fa fa-edit ">&nbsp;编辑</i>
+                                    </a>
+                                    <!-- Form -->
+                                    <form id="demo-form" class="white-popup-block mfp-hide form-horizontal" method="post" action="{:U('Auth/editRule')}">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h6><i class="fa fa-edit red"></i>编辑规则</h6>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">名称</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="tit" id="tit" class="form-control"  value="" required/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">备注条件</label>
+                                            <div class="col-sm-9">
+                                                <input type="email" name="condition" class="form-control" placeholder="{id>10}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">控制器/方法</label>
+                                            <div class="col-sm-9">
+                                                <h5 id="cm"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">创建时间</label>
+                                            <div class="col-sm-9">
+                                                <h5 id="create_time"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-9 col-sm-offset-3">
+                                                <div class="pull-right bk-margin-right-15">
+                                                    <input type="hidden" value="{$k.id}" name="rid">
+                                                    <button class="btn btn-primary">Submit</button>
+                                                    <button type="reset" class="btn btn-default">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                            </foreach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function auth_edit(id){
+            $.ajax({
+                url:"editRule",
+                data:{id:id},
+                datatype:"json",
+                type:"get",
+                success:function(data){
+                    $("#tit").val(data.title);
+                    $("#cm").html(data.name);
+                    $("#create_time").html(new Date(parseInt(data.create_time) * 1000).toLocaleString().substr(0,17));
+                },
+            });
+    }
+</script>
+<!-- End Main Page -->
+<include file="Common:end"/>

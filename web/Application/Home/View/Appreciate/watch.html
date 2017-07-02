@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="__PUBLIC__/css/style.css" rel='stylesheet' type='text/css' />
+</head>
+<body>
+<foreach name="total" item="v">
+<div class="comment-list">
+    <h5><a href="#">{$v.username}</a></h5>
+    <div class="cmt-list">
+        <div class="cmt-left">
+            <img src="__UPLOAD__/{$v.img}" alt="" />
+        </div>
+        <div class="cmt-right">
+            <p>{$v.comment}</p>
+        </div>
+        <div class="clearfix">&nbsp;</div><br>
+        <p style="font-size: 1.4ch;"><span>{$v.cid}楼</span>&nbsp;<span>20{$v.replay_time|date='y-m-d H:i',###}</span>&nbsp;&nbsp;&nbsp;<em><a onclick="clickdown({$v.id})"><img src="__PUBLIC__/images/like.png"/>&nbsp;(<span id="dianzan_{$v.id}">{$v.clicknum}</span>)</a>&nbsp;&nbsp;&nbsp;<a onclick="replay({$v.aid})"><img src="__PUBLIC__/images/add.png"/>&nbsp;回复</a>&nbsp;&nbsp;&nbsp;<a onclick="watch({$v.aid},{$v.cid})"><img src="__PUBLIC__/images/link.png"/>&nbsp;查看回复(200)</a></em></p>
+    </div>
+</div>
+</foreach>
+</body>
+</html>

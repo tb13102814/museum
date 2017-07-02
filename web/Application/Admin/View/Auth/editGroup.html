@@ -1,0 +1,110 @@
+<include file="Common:header"/>
+<include file="Common:menu"/>
+<!-- Main Page -->
+<div class="main ">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="pull-left">
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                <li><a href="#"><i class="fa fa-list-alt"></i>Forms</a></li>
+                <li class="active"><i class="fa  fa-check-circle-o"></i>Validation</li>
+            </ol>
+        </div>
+        <div class="pull-right">
+            <h2>Validation</h2>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="row">
+        <div class="col-lg-11 col-md-6 col-sm-6 col-xs-12">
+            <form id="form" action="__SELF__" class="form-horizontal" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6><i class="fa  fa-check-circle-o bk-fg-warning"></i>编辑/授权用户组</h6>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户组名称 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="groupname" class="form-control" placeholder="eg.: John Smith Doe" value="{$user_group[0]['title']}" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状态 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <label class="switch switch-success bk-margin-top-10">
+                                    <input class="switch-input" checked="checked" type="checkbox" name="status">
+                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="rule_all">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">分配权限 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox-custom checkbox-inline">
+                                    <input type="checkbox" id="check_all" checked="">
+                                    <label for="check_all">全选/反选</label>
+                                </div>
+                                <label class="error" for="for[]"></label>
+                            </div>
+                        </div>
+                        <foreach name="res" item="a">
+                        <div class="rule_father">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span class="required"></span></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox-custom checkbox-inline">
+                                    <input type="checkbox" id="check_father" name="check_rule[]" value="{$a.id}" <if condition="$a['is_checked']">checked="checked"</if>>
+                                    <label for="check_father">{$a.title}</label>
+                                </div>
+                                <label class="error" for="for[]"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span class="required"></span></label>
+                            <div class="col-sm-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>     ┠—</b>
+                                <foreach name="a.child" item="b">
+                                <div class="checkbox-custom checkbox-inline">
+                                    <input type="checkbox" id="check_child" name="check_rule[]" value="{$b.id}" <if condition="$b['is_checked']">checked="checked"</if>>
+                                    <label for="check_child">{$b.title}</label>
+                                </div>
+                                </foreach>
+                            </div>
+                        </div>
+                        </div>
+                        </foreach>
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <input type="hidden" value="{$user_group[0]['id']}" name="gid">
+                                <button class="bk-margin-5 btn btn-info">Submit</button>
+                                <button type="reset" class="bk-margin-5 btn btn-default">Reset</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#check_all").click(function(){
+            var inputs_all=$(this).parents(".rule_all").find("input");
+            $(this).attr("checked")?inputs_all.attr("checked","checked"):inputs_all.removeAttr("checked");
+        });
+        $("#check_father").click(function (){
+            var inputs=$(this).parents(".rule_father").find("input");
+            $(this).attr("checked")?inputs.attr("checked","checked"):inputs.removeAttrs("checked");
+        });
+    });
+</script>
+<!-- End Main Page -->
+<include file="Common:end"/>

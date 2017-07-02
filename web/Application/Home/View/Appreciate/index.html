@@ -1,0 +1,47 @@
+<include file="Common:header"/>
+<div class="blog">
+    <div class="container">
+        <div class="blog-top">
+            <div class="col-md-9 blog-left">
+                <foreach name="appreciate" item="v">
+                <div class="blog-main">
+                    <a href="{:U('/'.$v['id'])}" class="bg">{$v.title}</a>
+                    <p>艺术品推荐者: <a href="#">{$v.author}</a>&nbsp;&nbsp;&nbsp;&nbsp;20{$v.create_time|date='y-m-d',###}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">5 comments</a></p>
+                </div>
+                <div class="blog-main-one">
+                    <div class="blog-one">
+                        <div class="col-md-5 blog-one-left">
+                            <a href="{:U('/'.$v['id'])}"><img src="__UPLOAD__/{$v.icon}" alt="" width="350" height="250"/></a>
+                        </div>
+                        <div class="col-md-7 blog-one-left">
+                            <p>{$v.introduce}</p>
+                        </div>
+                    </div>
+                    <div class="comments">
+                        <ul>
+                            <li><span class="bookmark"> </span><a href="#">Uncategorized</a></li>
+                            <li><span class="clndr"> </span><p>march 13,2014</p></li>
+                            <li><span class="cmnt"> </span><a href="#">comments</a></li>
+                        </ul>
+                        <div class="b-btn">
+                            <a href="{:U('/'.$v['id'])}" class="hvr-shutter-out-horizontal">Read more</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                </foreach>
+            </div>
+            {:W('Right/right')}
+            <div class="clearfix"></div>
+        </div>
+        <div class="pagination">
+            <nav>
+                <ul class="pager">
+                    <li><a href="#">{$page}</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<include file="Common:footer"/>

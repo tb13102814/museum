@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/css">
+        .content1 {
+            display: block;
+            width: 100%;
+            padding: 50px 0 80px 0;
+        }
+        /*.divContent a{
+            color: #f25252;
+            text-decoration:none;
+        }
+        .divContent a:hover {
+            color: red;
+            text-decoration: none;
+        }
+	*/
+    </script>
+    <link href="__PUBLIC__/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="__PUBLIC__/css/style.css" rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>
+    <script src="__PUBLIC__/js/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div class="content1">
+    <h1 id="htitle">
+        {$result.title}
+    </h1>
+    <div class="contip">
+        上架时间：<span id="create_time">20{$result.create_time|date='y-m-d',###}</span>
+    </div>
+    <div id="divContent" class="divContent">
+        <div style="text-align:center;"><img src="__UPLOAD__/{$result.icon}" alt="" style="line-height:1.5;"></div>
+        <p style="text-align:center;"> 统一销售价：{$result.price}元 </p>
+        <p style="text-align:center;"> 口径12.1cm,底径9.2cm,高11.5cm </p>
+        <p>{$result.info}</p>
+        <p align="center"><a class="art" href="#">购买</a></p>
+    </div>
+</div>
+
+</body>
+</html>

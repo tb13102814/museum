@@ -1,0 +1,100 @@
+<include file="Common:header"/>
+<include file="Common:menu"/>
+<!-- Main Page -->
+<div class="main ">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="pull-left">
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                <li><a href="#"><i class="fa fa-list-alt"></i>Forms</a></li>
+                <li class="active"><i class="fa  fa-check-circle-o"></i>Validation</li>
+            </ol>
+        </div>
+        <div class="pull-right">
+            <h2>Validation</h2>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="row">
+        <div class="col-lg-11 col-md-6 col-sm-6 col-xs-12">
+            <form id="form" action="__SELF__" class="form-horizontal" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6><i class="fa  fa-check-circle-o bk-fg-warning"></i>添加导航</h6>
+                        <div class="panel-actions">
+                            <a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+                            <a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">导航分类 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <select id="nav_style" class="form-control" name="nav_style" required>
+                                    <option value="">请选择：</option>
+                                    <option value="0">主导航</option>
+                                    <option value="1">底部导航</option>
+                                    <option value="2">Wap底部导航</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">上级导航 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <select id="company" class="form-control" name="pid" required>
+                                    <option value="">请选择：</option>
+                                    <option value="0">顶级导航</option>
+                                    <foreach name="select" item="v">
+                                    <option value="{$v.id}">{$v.html}{$v.title}</option>
+                                    </foreach>
+                                </select>
+                                <label class="error" for="company"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">导航标题 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="nav_title" class="form-control" placeholder="导航前台显示标题" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">外链URL地址 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="nav_url" class="form-control" placeholder="支持http://格式或者TP的U函数解析格式"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">打开方式 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <div class="radio-custom radio-primary">
+                                    <input id="awesome" name="open_with" type="radio" value="_parent" required />
+                                    <label for="awesome">当前窗口</label>
+                                </div>
+                                <div class="radio-custom radio-primary">
+                                    <input id="very-awesome" name="open_with" type="radio" value="_blank" />
+                                    <label for="very-awesome">新窗口打开</label>
+                                </div>
+                                <label class="error" for="Fire_is"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">导航排序 <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="nav_sort" class="form-control" placeholder="用于显示的顺序" required/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button class="bk-margin-5 btn btn-info">Submit</button>
+                                <button type="reset" class="bk-margin-5 btn btn-default">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Main Page -->
+<include file="Common:end"/>
